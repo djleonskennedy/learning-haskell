@@ -17,3 +17,38 @@ isRGB Red = True
 isRGB Green = True
 isRGB Blue = True
 isRGB _ = False -- Wild Card
+
+-- pattern matching goes from top to bottom and from left to rigth
+
+-- pattern matching cases
+
+-- 1) succeed
+-- 2) fail
+-- 3) diverge
+
+--- foo (1,2) = 3
+--- foo (0, _) = 5
+
+-- (0, undefined) - fail in first, success in second
+-- (undefined, 0) - diverge in first
+-- (2, 1) - two fails, Consequently "diverge"
+-- (1, 5-3) - first success, second fails
+-- (NOTE: due to pattern matching 5-3 forces for calculation cause we need value)
+
+-- As pattern
+
+dupFirst :: [a] -> [a]
+dupFirst (x:xs) = x:x:xs
+
+-- s as pattern sample
+
+dupFirst' :: [a] -> [a]
+dupFirst' s@(x:xs) = x:s
+
+-- Lazy pattern
+-- pattern always mathes even its fails
+
+(***) f g ~(x, y) = (f x, g y)
+
+-- GHCi (const 1 *** const 2) undefined
+-- (1, 2)
