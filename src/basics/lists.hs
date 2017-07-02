@@ -3,6 +3,7 @@
 data List a = Nil | Const a (List a) deriving Show
 -- similar to:
 -- data [] a = [] | a : ([] a)
+-- infixr 5 :
 -- or:
 -- data [] a = [] | a : [a]
 
@@ -20,3 +21,6 @@ head'  []        =   error "head error: empty list"
 
 myList = Const 1 (Const 2 (Const 3 Nil))
 myAnotherList = 'a': ('b': ('c': []))
+
+-- also due to "infixr 5" right associativity we can write it
+myAnotherList' = 'a': 'b': 'c': []
