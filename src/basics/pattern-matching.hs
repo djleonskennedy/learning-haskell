@@ -52,3 +52,7 @@ dupFirst' s@(x:xs) = x:s
 
 -- GHCi (const 1 *** const 2) undefined
 -- (1, 2)
+
+-- factorial
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
